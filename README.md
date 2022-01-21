@@ -10,9 +10,9 @@ Implement the full survey functionality and allow submission to the API. For “
 
 ## Task 2
 
-In the README.md, you will see the original
-design. Using the tools and components
-available to you, make the app as close to the original design as possible.
+In the README.md, you will see the original design. Using the tools and components available to you, make the app as close to the original design as possible.
+
+![task-two-original-design](/.readme-assets/task-two-original-design.png)
 
 ### Explanation of Completion
 
