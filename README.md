@@ -1,18 +1,24 @@
-# fullstack-monorepo
+# Genopets Take-Home Challenge::Logan Call
 
-This is a monorepo containing 3 parts: `ui`, `frontend` and `api`
+## Task 1
 
-`ui` is the component library, `frontend` is the web app built in Next.js and `api` is the backend built in Nest.js
+Implement the full survey functionality and allow submission to the API. For “ranked” questions, you must allow the user to select the choices in order of preference, as seen here:
 
-To start developing, simply make the following commands at the root:
+![task-one-image-1](/.readme-assets/task-one-image-1.png)
 
-```
-yarn install
-yarn dev
-```
+### Explanation of Completion
 
-After that, `frontend` can be accessed at `http://localhost:3001`, the storybook for `ui` at `http://localhost:6006` and the backend `api` at `http://localhost:8080`
+## Task 2
 
-The original aesthetics can be seen here:
+In the README.md, you will see the original
+design. Using the tools and components
+available to you, make the app as close to the original design as possible.
 
-<img width="922" alt="Screen Shot 2022-01-19 at 2 56 35 AM" src="https://user-images.githubusercontent.com/11192982/150119894-81c9dc06-03d7-4b98-9b85-3756812d401e.png">
+### Explanation of Completion
+
+## Task 3
+
+Using whichever technology you prefer, persist the submitted survey results once
+they are passed to the API.
+
+### Explanation of Completion
