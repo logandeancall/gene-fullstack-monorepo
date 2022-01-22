@@ -209,9 +209,12 @@ const AnswerGroup = ({
       {choices.map((choice, i) => {
         const alphabet = String.fromCharCode(97 + i);
 
-        const radioProps: any = getRadioProps({
-          value: choice,
-        });
+        const radioProps: any = {
+          ...getRadioProps({
+            value: choice,
+          }),
+          isChecked: currentAnswer.some((i) => i === choice),
+        };
 
         return (
           <RadioCard
