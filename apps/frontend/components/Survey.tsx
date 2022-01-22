@@ -189,7 +189,10 @@ const AnswerGroup = ({
   return (
     <Flex {...group} direction="column" justify="flex-end" gap={4}>
       {choices.map((choice, i) => {
-        const alphabet = String.fromCharCode(97 + i);
+        const leftText =
+          type === 'ranked'
+            ? currentAnswer.indexOf(choice) + 1 || '-'
+            : String.fromCharCode(97 + i);
 
         let props: any =
           type === 'radio'
@@ -203,11 +206,11 @@ const AnswerGroup = ({
 
         return (
           <RadioCard
-            key={alphabet}
+            key={leftText + choice}
             {...props}
             justify="left"
             type={type}
-            leftText={alphabet}
+            leftText={leftText}
             rightText={choice}
           />
         );

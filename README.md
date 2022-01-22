@@ -9,10 +9,9 @@ Implement the full survey functionality and allow submission to the API. For “
 ### Explanation of Completion
 
 1. Move form values into controlled state
-2. Diverge checkbox and ranked field logic
-3. Add ranked field logic
-4. Connect API
-5. Submit data to API and handle success/error
+2. Add ranked field logic
+3. Connect API
+4. Submit data to API and handle success/error
 
 ## Task 2
 
