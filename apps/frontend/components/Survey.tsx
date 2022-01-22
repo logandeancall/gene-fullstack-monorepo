@@ -11,6 +11,7 @@ import theme from 'ui/theme';
 import { GodCommandsRaphaelText } from 'ui/atoms/text/EnochGodCommandsRaphaelText';
 import { RadioCard } from 'ui/atoms/radio/RadioCard';
 import { SubHeader } from 'ui/atoms/header';
+import { AlertArea } from 'ui/atoms/alert-area/AlertArea';
 import { Button } from 'ui/atoms/button/Button';
 
 import AlgorithmSvg from 'ui/icons/svg/AlgorithmSvg';
@@ -249,6 +250,33 @@ const Question = ({
   </Box>
 );
 
+type submitStatus = 'ready' | 'loading' | 'success' | 'error';
+
+const SubmitStatus = ({ submitStatus }: { submitStatus: submitStatus }) => {
+  switch (submitStatus) {
+    case 'error':
+      return (
+        <Box>
+          <AlertArea status="error">
+            An unknown error occurred. Please try again later.
+          </AlertArea>
+        </Box>
+      );
+    case 'success':
+      return (
+        <Box>
+          <AlertArea status="success">
+            Your response was successfully sent!
+          </AlertArea>
+        </Box>
+      );
+    case 'loading':
+    case 'ready':
+    default:
+      return null;
+  }
+};
+
 type fieldValue = {
   title: string;
   type: string;
@@ -256,7 +284,7 @@ type fieldValue = {
 };
 
 const Survey = () => {
-  const [submitting, setSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState('ready' as submitStatus);
 
   const [fieldValues, setFieldValues] = useState(
     SurveyQuestionsData.map(
@@ -278,22 +306,29 @@ const Survey = () => {
   };
 
   const onSubmit = () => {
-    setSubmitting(true);
-    fetch('http://localhost:8080', {
+    setSubmitStatus('loading');
+
+    fetch('http://localhost:8080/survey', {
       method: 'POST',
-      mode: 'no-cors',
       headers: {
         'Content-Type': 'application/json',
+        Accept: 'application/json',
       },
       body: JSON.stringify(fieldValues),
     })
       .then((response) => {
-        console.log('api response', response);
+        if (response.ok) {
+          setSubmitStatus('success');
+        } else {
+          console.log('error', response);
+          setSubmitStatus('error');
+        }
       })
       .catch((error) => {
+        setSubmitStatus('error');
         console.log('api error', error);
       })
-      .finally(() => setSubmitting(false));
+      .finally(() => setTimeout(() => setSubmitStatus('ready'), 5000));
   };
 
   return (
@@ -324,7 +359,12 @@ const Survey = () => {
             currentAnswer={fieldValues[index]?.values || []}
           />
         ))}
-        <Button onClick={onSubmit} color="#ffd800" isLoading={submitting}>
+        <SubmitStatus submitStatus={submitStatus} />
+        <Button
+          onClick={onSubmit}
+          color="#ffd800"
+          isLoading={submitStatus === 'loading'}
+        >
           Submit & Complete
         </Button>
       </Flex>

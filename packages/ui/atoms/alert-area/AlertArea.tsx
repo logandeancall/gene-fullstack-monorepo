@@ -1,17 +1,21 @@
 import { Alert, chakra } from '@chakra-ui/react';
-import { InfoIcon, WarningIcon } from '@chakra-ui/icons';
+import { InfoIcon, CheckIcon, WarningIcon } from '@chakra-ui/icons';
 import hexToRGB from '../../utils/hexToRGB';
 
 const STATUSES = {
   info: { color: `#ffd800`, icon: InfoIcon },
   error: { color: `#ff0000`, icon: WarningIcon },
+  success: { color: `#00ffc8`, icon: CheckIcon },
 };
 
 export const AlertArea = (
   {
     status,
     children,
-  }: { status?: 'info' | 'error'; children?: JSX.Element | string } = {
+  }: {
+    status?: 'info' | 'error' | 'success';
+    children?: JSX.Element | string;
+  } = {
     status: `info`,
     children: ``,
   },

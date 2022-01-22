@@ -7,6 +7,7 @@ export class AppService {
   }
 
   submitSurvey(results: any) {
-    console.log(results);
+    console.log('submit survey service results', results);
+    return 'Success';
   }
 }
