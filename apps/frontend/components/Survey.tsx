@@ -168,23 +168,6 @@ interface QuestionProps {
   currentAnswer: string[];
 }
 
-const handleAnswerSelection = (
-  currentAnswer: string[],
-  selected: string,
-  type: string,
-) => {
-  switch (type) {
-    case 'ranked':
-    case 'checkbox':
-      return currentAnswer.some((val) => val === selected)
-        ? currentAnswer.filter((val) => val !== selected)
-        : [...currentAnswer, selected];
-    case 'radio':
-    default:
-      return [selected];
-  }
-};
-
 const AnswerGroup = ({
   type,
   onAnswer,
@@ -192,34 +175,36 @@ const AnswerGroup = ({
   choices,
   index,
 }: QuestionProps) => {
-  const { getRootProps, getRadioProps } = useRadioGroup({
+  const { getRootProps: getRadioRootProps, getRadioProps } = useRadioGroup({
     name: `answer-group=${index}`,
-    onChange: (selected) => {
-      return onAnswer?.(
-        handleAnswerSelection(currentAnswer, selected, type),
-        index,
-      );
-    },
+    onChange: (selected) => onAnswer?.([selected], index),
   });
 
-  const group = getRootProps();
+  const { getCheckboxProps } = useCheckboxGroup({
+    onChange: (selected) => onAnswer?.(selected as string[], index),
+  });
+
+  const group = type === 'radio' ? getRadioRootProps() : {};
 
   return (
     <Flex {...group} direction="column" justify="flex-end" gap={4}>
       {choices.map((choice, i) => {
         const alphabet = String.fromCharCode(97 + i);
 
-        const radioProps: any = {
-          ...getRadioProps({
-            value: choice,
-          }),
-          isChecked: currentAnswer.some((i) => i === choice),
-        };
+        let props: any =
+          type === 'radio'
+            ? getRadioProps({
+                value: choice,
+              })
+            : getCheckboxProps({
+                name: `answer-group=${index}`,
+                value: choice,
+              });
 
         return (
           <RadioCard
             key={alphabet}
-            {...radioProps}
+            {...props}
             justify="left"
             type={type}
             leftText={alphabet}
