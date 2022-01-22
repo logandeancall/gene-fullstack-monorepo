@@ -6,6 +6,12 @@ Implement the full survey functionality and allow submission to the API. For “
 
 ![task-one-image-1](/.readme-assets/task-one-image-1.png)
 
+1. Move form values into controlled state
+2. Diverge checkbox and ranked field logic
+3. Add ranked field logic
+4. Connect API
+5. Submit data to API and handle success/error
+
 ### Explanation of Completion
 
 ## Task 2

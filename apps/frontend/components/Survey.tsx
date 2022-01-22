@@ -168,10 +168,38 @@ interface QuestionProps {
   currentAnswer: string[];
 }
 
-const AnswerGroup = ({ type, onAnswer, choices, index }: QuestionProps) => {
+const handleAnswerSelection = (
+  currentAnswer: string[],
+  selected: string,
+  type: string,
+) => {
+  switch (type) {
+    case 'ranked':
+    case 'checkbox':
+      return currentAnswer.some((val) => val === selected)
+        ? currentAnswer.filter((val) => val !== selected)
+        : [...currentAnswer, selected];
+    case 'radio':
+    default:
+      return [selected];
+  }
+};
+
+const AnswerGroup = ({
+  type,
+  onAnswer,
+  currentAnswer,
+  choices,
+  index,
+}: QuestionProps) => {
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: `answer-group=${index}`,
-    onChange: (selected) => onAnswer?.([selected], index),
+    onChange: (selected) => {
+      return onAnswer?.(
+        handleAnswerSelection(currentAnswer, selected, type),
+        index,
+      );
+    },
   });
 
   const group = getRootProps();
@@ -205,6 +233,8 @@ const Question = ({
   choices = [],
   type = ``,
   index = 0,
+  onAnswer,
+  currentAnswer,
 }: QuestionProps) => (
   <Box>
     <SubHeader
@@ -218,12 +248,43 @@ const Question = ({
     <Text fontFamily="Avenir" color="white" marginBottom={2}>
       {title}
     </Text>
-    <AnswerGroup type={type} choices={choices} index={index} />
+    <AnswerGroup
+      onAnswer={onAnswer}
+      currentAnswer={currentAnswer}
+      type={type}
+      choices={choices}
+      index={index}
+    />
   </Box>
 );
 
+type fieldValue = {
+  title: string;
+  type: string;
+  values: string[];
+};
+
 const Survey = () => {
   const [submitting, setSubmitting] = useState(false);
+
+  const [fieldValues, setFieldValues] = useState(
+    SurveyQuestionsData.map(
+      ({ title, type }) =>
+        ({
+          title,
+          type,
+          values: [],
+        } as fieldValue),
+    ),
+  );
+
+  const handleFieldValueUpdate = (response: string[], index: number) => {
+    setFieldValues((items) =>
+      items.map((item, itemIndex) =>
+        itemIndex == index ? { ...item, values: response } : item,
+      ),
+    );
+  };
 
   const onSubmit = () => {
     setSubmitting(true);
@@ -250,7 +311,13 @@ const Survey = () => {
       </Text>
       <Flex direction="column" justify="flex-end" gap={8}>
         {SurveyQuestionsData.map((question, index) => (
-          <Question key={question.title} {...question} index={index} />
+          <Question
+            onAnswer={handleFieldValueUpdate}
+            key={question.title}
+            {...question}
+            index={index}
+            currentAnswer={fieldValues[index]?.values || []}
+          />
         ))}
         <Button onClick={onSubmit} color="#ffd800" isLoading={submitting}>
           Submit & Complete
