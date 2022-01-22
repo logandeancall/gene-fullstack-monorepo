@@ -279,7 +279,21 @@ const Survey = () => {
 
   const onSubmit = () => {
     setSubmitting(true);
-    setTimeout(() => setSubmitting(false), 3000);
+    fetch('http://localhost:8080', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(fieldValues),
+    })
+      .then((response) => {
+        console.log('api response', response);
+      })
+      .catch((error) => {
+        console.log('api error', error);
+      })
+      .finally(() => setSubmitting(false));
   };
 
   return (
