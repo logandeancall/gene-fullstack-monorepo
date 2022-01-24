@@ -39,5 +39,6 @@ they are passed to the API.
 1. Init Mongo DB w/Nest
 2. Setup Survey Schema,
 3. Connect Survey Schema to AppModel & AppController
+4. Update tests
 
 To test the persistence be sure to have mongo running locally and submit the survey. You can then view the stored data [here](http://localhost:8080/)

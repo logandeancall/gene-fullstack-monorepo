@@ -9,8 +9,8 @@ export class AppService {
     @InjectModel(Survey.name) private surveyModel: Model<SurveyDocument>,
   ) {}
 
-  get(): string {
-    return this.surveyModel.find().exec() as any;
+  get() {
+    return this.surveyModel.find().exec();
   }
 
   submitSurvey(results: fieldValue[]) {
