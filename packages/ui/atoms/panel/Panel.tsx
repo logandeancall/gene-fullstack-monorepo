@@ -29,14 +29,14 @@ const StyledSection = styled.section`
     typeof width === `number` ? `${width}px` : width || `100%`};
   min-width: 96px;
   color: ${({ color }) => color};
-  padding: 32px;
+  padding: 8px 32px 32px;
   border: 1px solid
     ${({ color = defaultColor }: StyledSectionProps) => {
       const [red, green, blue] = hexToRGB(color);
       return `rgba(${red}, ${green}, ${blue}, 0.2)`;
     }};
   border-radius: ${({ borderRadii = defaultBorderRadii }) =>
-    `${borderRadii[0]}px ${borderRadii[1]}px ${borderRadii[2]}px ${borderRadii[3]}px`};
+    `${borderRadii[0]}px 0px ${borderRadii[2]}px 0px`};
 
   ${({ sameHeightWidth }) =>
     // make height the same as the width
