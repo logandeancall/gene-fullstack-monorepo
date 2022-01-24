@@ -15,6 +15,7 @@ import { SubHeader } from 'ui/atoms/header';
 import { AlertArea } from 'ui/atoms/alert-area/AlertArea';
 import { Button } from 'ui/atoms/button/Button';
 import Panel from 'ui/atoms/panel/Panel';
+import { fieldValue } from 'api/src/schemas/survey.schema';
 
 import AlgorithmSvg from 'ui/icons/svg/AlgorithmSvg';
 
@@ -278,12 +279,6 @@ const SubmitStatus = ({ submitStatus }: { submitStatus: submitStatus }) => {
     default:
       return null;
   }
-};
-
-type fieldValue = {
-  title: string;
-  type: string;
-  values: string[];
 };
 
 const Survey = () => {
