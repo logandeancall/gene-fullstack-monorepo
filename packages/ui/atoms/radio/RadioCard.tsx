@@ -74,7 +74,7 @@ const StyledRadioCard = styled(Box)<StyledRadioCardProps>`
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 5px;
-  font-weight: 100;
+  font-weight: 600;
 
   color: ${(props) => `rgba(${props.red}, ${props.green}, ${props.blue}, 1)`};
 
@@ -172,8 +172,6 @@ export const RadioCard = ({
     justifyContent,
     flexDirection,
   };
-
-  console.log(red, green, blue);
 
   return (
     <Box as="label">

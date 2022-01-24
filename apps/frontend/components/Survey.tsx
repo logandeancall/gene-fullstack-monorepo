@@ -360,9 +360,11 @@ const Survey = () => {
             <AlgorithmSvg />
           </Box>
         </Flex>
-        <SubHeader letterSpacing="initial">SURVEY</SubHeader>
-        <GodCommandsRaphaelText />
-        <Text fontFamily="Avenir" color="white" marginBottom={2}>
+        <Box mb="4">
+          <SubHeader letterSpacing="initial">SURVEY</SubHeader>
+          <GodCommandsRaphaelText />
+        </Box>
+        <Text fontFamily="Avenir" color="white" marginBottom={4}>
           Tell us a bit more about you and what you’re looking for in Genopets.
         </Text>
         <Flex direction="column" justify="flex-end" gap={8}>

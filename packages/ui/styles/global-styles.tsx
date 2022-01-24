@@ -37,7 +37,7 @@ const styles = css`
   @font-face {
     font-family: 'Avenir';
     src: url('https://genopets-web-assets.s3.amazonaws.com/fonts/Avenir.ttc')
-        format('truetype'),
+      format('truetype');
     font-weight: normal;
     font-style: normal;
   }
@@ -213,7 +213,7 @@ const styles = css`
     margin-bottom: 20px;
   }
 
-  #chakra-toast-portal .chakra-toast{
+  #chakra-toast-portal .chakra-toast {
     margin-top: 25px;
   }
 `;
