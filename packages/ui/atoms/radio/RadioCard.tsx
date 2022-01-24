@@ -29,6 +29,7 @@ export interface RadioCardProps extends BoxProps {
   value?: number;
   leftText: string;
   rightText: string;
+  gradientBg?: undefined;
 }
 
 interface StyledRadioCardProps extends BoxProps {
