@@ -21,6 +21,14 @@ In the README.md, you will see the original design. Using the tools and componen
 
 ### Explanation of Completion
 
+When adding additional components I first looked at Storybook and then Chakra Docs for existing components.
+
+1. Open Chakra docs, take a look at theming
+2. Add heading
+3. Update width and margin on Survey, wrap content with Panel
+4. Update body background to include images & gradient
+5. Typography adjustments
+
 ## Task 3
 
 Using whichever technology you prefer, persist the submitted survey results once

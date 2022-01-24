@@ -4,6 +4,7 @@ import {
   Box,
   Text,
   Flex,
+  Heading,
   useRadioGroup,
   useCheckboxGroup,
 } from '@chakra-ui/react';
@@ -13,6 +14,7 @@ import { RadioCard } from 'ui/atoms/radio/RadioCard';
 import { SubHeader } from 'ui/atoms/header';
 import { AlertArea } from 'ui/atoms/alert-area/AlertArea';
 import { Button } from 'ui/atoms/button/Button';
+import Panel from 'ui/atoms/panel/Panel';
 
 import AlgorithmSvg from 'ui/icons/svg/AlgorithmSvg';
 
@@ -338,36 +340,50 @@ const Survey = () => {
       gap={2}
       justify="flex-end"
       height="full"
+      maxWidth="600px"
+      ml="auto"
+      mr="auto"
     >
-      <Flex mt={8} alignItems="center" gap={4}>
-        <Box h="64px" w="64px">
-          <AlgorithmSvg />
-        </Box>
-      </Flex>
-      <SubHeader letterSpacing="initial">SURVEY</SubHeader>
-      <GodCommandsRaphaelText />
-      <Text fontFamily="Avenir" color="white" marginBottom={2}>
-        Tell us a bit more about you and what you’re looking for in Genopets.
-      </Text>
-      <Flex direction="column" justify="flex-end" gap={8}>
-        {SurveyQuestionsData.map((question, index) => (
-          <Question
-            onAnswer={handleFieldValueUpdate}
-            key={question.title}
-            {...question}
-            index={index}
-            currentAnswer={fieldValues[index]?.values || []}
-          />
-        ))}
-        <SubmitStatus submitStatus={submitStatus} />
-        <Button
-          onClick={onSubmit}
-          color="#ffd800"
-          isLoading={submitStatus === 'loading'}
-        >
-          Submit & Complete
-        </Button>
-      </Flex>
+      <Panel topEye bottomEye>
+        <Flex alignItems="center" gap={2} mb="2">
+          <Heading
+            fontFamily="morganite"
+            mb="-5"
+            fontWeight="normal"
+            fontSize="9xl"
+            as="h1"
+          >
+            04
+          </Heading>
+          <Box h="64px" w="64px">
+            <AlgorithmSvg />
+          </Box>
+        </Flex>
+        <SubHeader letterSpacing="initial">SURVEY</SubHeader>
+        <GodCommandsRaphaelText />
+        <Text fontFamily="Avenir" color="white" marginBottom={2}>
+          Tell us a bit more about you and what you’re looking for in Genopets.
+        </Text>
+        <Flex direction="column" justify="flex-end" gap={8}>
+          {SurveyQuestionsData.map((question, index) => (
+            <Question
+              onAnswer={handleFieldValueUpdate}
+              key={question.title}
+              {...question}
+              index={index}
+              currentAnswer={fieldValues[index]?.values || []}
+            />
+          ))}
+          <SubmitStatus submitStatus={submitStatus} />
+          <Button
+            onClick={onSubmit}
+            color="#ffd800"
+            isLoading={submitStatus === 'loading'}
+          >
+            Submit & Complete
+          </Button>
+        </Flex>
+      </Panel>
     </Flex>
   );
 };

@@ -114,14 +114,16 @@ const StyledRadioCard = styled(Box)<StyledRadioCardProps>`
 
 const CardText = ({ leftText = ``, rightText = `` }) => (
   <Flex direction="row" justify="flex-end" alignItems="center" gap={1}>
-    <Box
+    <Flex
       letterSpacing="initial"
       paddingRight="10px"
       fontFamily="neon"
       fontSize="13px"
+      width="30px"
+      justifyContent="center"
     >
       {leftText}
-    </Box>
+    </Flex>
 
     <Box
       borderLeft="1px solid rgba(0, 255, 200, 0.2)"
