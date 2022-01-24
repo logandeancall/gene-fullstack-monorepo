@@ -40,7 +40,7 @@ interface StyledRadioCardProps extends BoxProps {
 const StyledRadioCard = styled(Box)<StyledRadioCardProps>`
   background: ${(props) =>
     props.gradientBg
-      ? `linear-gradient(308.45deg, rgba(${props.red}, ${props.green}, ${props.blue}, 0.6) -94.97%,  rgba(${props.red}, ${props.green}, ${props.blue}, 0.05) 70.06%)`
+      ? `linear-gradient(308.45deg, rgba(${props.red}, ${props.green}, ${props.blue}, 0.6) -94.97%,  rgba(${props.red}, ${props.green}, ${props.blue}, 0.05) 25.06%)`
       : `none`};
 
   position: relative;
@@ -168,9 +168,12 @@ export const RadioCard = ({
     green,
     blue,
     width,
+    gradientBg: rest.gradientBg,
     justifyContent,
     flexDirection,
   };
+
+  console.log(red, green, blue);
 
   return (
     <Box as="label">

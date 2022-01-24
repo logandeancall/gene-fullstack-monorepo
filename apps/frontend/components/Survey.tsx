@@ -213,6 +213,7 @@ const AnswerGroup = ({
             {...props}
             justify="left"
             type={type}
+            gradientBg={true}
             leftText={leftText}
             rightText={choice}
           />
@@ -344,7 +345,7 @@ const Survey = () => {
       ml="auto"
       mr="auto"
     >
-      <Panel topEye bottomEye>
+      <Panel topEye bottomEye background="none">
         <Flex alignItems="center" gap={2} mb="2">
           <Heading
             fontFamily="morganite"

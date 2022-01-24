@@ -13,6 +13,7 @@ type StyledSectionProps = {
   // if true, height will be same as
   // given width.  Any padding will be removed.
   sameHeightWidth?: boolean;
+  background?: string;
 };
 
 const defaultBorderRadii: BorderRadii = [20, 20, 20, 20];
@@ -42,9 +43,13 @@ const StyledSection = styled.section`
     // https://stackoverflow.com/a/13625843
     sameHeightWidth ? `height: 0; padding: 0; padding-bottom: 100%;` : ``}
 
-  background: ${({ color = defaultColor }: StyledSectionProps) => {
-    const [red, green, blue] = hexToRGB(color);
-    return `linear-gradient(308.45deg, rgba(${red}, ${green}, ${blue}, 0.6) -94.97%,  rgba(${red}, ${green}, ${blue}, 0.05) 70.06%)`;
+  background: ${({ color = defaultColor, background }: StyledSectionProps) => {
+    if (background) {
+      return background;
+    } else {
+      const [red, green, blue] = hexToRGB(color);
+      return `linear-gradient(308.45deg, rgba(${red}, ${green}, ${blue}, 0.6) -94.97%,  rgba(${red}, ${green}, ${blue}, 0.05) 70.06%)`;
+    }
   }};
 
   > h3,
@@ -91,6 +96,7 @@ export interface PanelProps extends StyledSectionProps {
   borderRadii?: BorderRadii;
   topEye?: boolean;
   bottomEye?: boolean;
+  background?: string;
 }
 
 const Panel = ({
@@ -100,9 +106,10 @@ const Panel = ({
   topEye = false,
   bottomEye = false,
   width,
+  background = undefined,
   ...rest
 }: PanelProps) => (
-  <StyledSection {...{ color, borderRadii, width, ...rest }}>
+  <StyledSection {...{ color, borderRadii, width, background, ...rest }}>
     {topEye && (
       <TopEye>
         <SvgIcons.CornerEye />

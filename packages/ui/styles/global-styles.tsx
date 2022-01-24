@@ -1,5 +1,4 @@
 import { css, Global } from '@emotion/react';
-import spacePyramidImage from '../images/space-pyramid.png';
 
 const styles = css`
   * {
@@ -33,10 +32,6 @@ const styles = css`
     height: calc(var(--vh, 1vh) * 100);
     margin: 0px;
     background-color: #181a1c;
-    background-image: url("${spacePyramidImage}");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: bottom left;
   }
 
   @font-face {
