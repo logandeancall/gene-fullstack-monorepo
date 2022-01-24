@@ -345,7 +345,7 @@ const Survey = () => {
       ml="auto"
       mr="auto"
     >
-      <Panel topEye bottomEye background="none">
+      <Panel topEye bottomEye background="none" padding>
         <Flex alignItems="center" gap={2} mb="2">
           <Heading
             fontFamily="morganite"
